@@ -101,9 +101,16 @@ function App() {
       <img
         src={GameLogo}
         alt=""
-        className="lg:w-52 md:32 top-6 left-2 absolute"
+        className="lg:w-52 md:32 sm:32 top-6 left-2 absolute"
         style={{
           ...(window.innerWidth < 400 && {
+            width: "10rem",
+            position: "relative",
+            margin: "0px",
+            marginBottom: "-2rem",
+            marginTop: "-4.6rem",
+          }),
+          ...(window.innerWidth < 1000 && {
             width: "10rem",
             position: "relative",
             margin: "0px",

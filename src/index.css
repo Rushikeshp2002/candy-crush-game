@@ -5,6 +5,7 @@
 body{
     background-image: url('./assets/Bg-1.jpg');
     background-size: cover;
+    background-position: center;
     
     /* background-color: black; */
 }
