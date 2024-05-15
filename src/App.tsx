@@ -85,16 +85,16 @@ function App() {
     return () => {
       backgroundMusic.pause();
       backgroundMusic.currentTime = 0;
-      console.log(`
+      
+    };
+  }, []);
+  console.log(`
     CCCCCC   AAAAA  N   N  DDDD   Y   Y     CCCCC    RRRRR  U   U  SSSSS  H   H
     C        A   A  NN  N  D   D   Y Y      C        R   R  U   U  S      H   H
     C        AAAAA  N N N  D   D    Y       C        RRRRR  U   U  SSSSS  HHHHH
     C        A   A  N  NN  D   D    Y       C        R  R   U   U      S  H   H
     CCCCCC   A   A  N   N  DDDD     Y       CCCCC    R   R   UUU   SSSSS  H   H 
 `);
-    };
-  }, []);
-  
 
   return (
     <div className="flex items-center h-screen justify-center flex-col">
