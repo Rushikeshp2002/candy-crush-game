@@ -114,6 +114,11 @@ function App() {
       />
       <Board />
       <h1 className="text-black rounded-sm lg:p-2   absolute top-0 bg-white right-0  text-sm">Made with 💖 Rushikesh Patil</h1>
+      <h1 className="text-white rounded-lg p-2 font-bold  absolute bottom-20 bg-red-500  text-lg" style={{
+          ...(window.innerWidth > 400 && {
+            display: "none"
+          }),
+        }}>Only playable on desktop!!!</h1>
     </div>
   );
 }
