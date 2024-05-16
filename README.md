@@ -1,5 +1,6 @@
 # React + TypeScript + Vite
 <h2>Live Link => https://candy-crush-game-rushikeshp.netlify.app/</h2>
+<img src="https://github.com/Rushikeshp2002/Images/blob/main/Candy%20Crush.png" style={width:"100%"}>
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
