@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./App.css";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { moveBelow, updateBoard } from "./store";
@@ -15,13 +15,12 @@ import { formulasForColumn, generateInvalidMoves } from "./utils/formulas";
 import { formulasForThree } from "./utils/formulas";
 import GameLogo from "./assets/png-clipart-candy-crush-saga-logo-candy-crush-saga-logo-icons-logos-emojis-tech-companies.png";
 import CandyAudio from "./assets/wrapped-candy-created1-101soundboards.mp3";
-import BackgroundMusic from "./assets/loop-bg.mp3";
+import backgroundMusicFile from "./assets/loop-bg.mp3";
 
 function App() {
+ 
   const [playSound, setPlaySound] = useState(false);
-  const backgroundMusic = new Audio(BackgroundMusic);
-  backgroundMusic.loop = true;
-  backgroundMusic.preload = "auto";
+  
   const dispatch = useAppDispatch();
   const candysound = new Audio(CandyAudio);
   candysound.preload = "auto";
@@ -29,6 +28,26 @@ function App() {
   const boardSize = useAppSelector(
     ({ candyCrush: { boardSize } }) => boardSize
   );
+  // bg music 
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  useEffect(() => {
+    const audio = new Audio(backgroundMusicFile);
+    audioRef.current = audio;
+
+    audio.addEventListener('ended', () => {
+      audio.currentTime = 0;
+      audio.play();
+    });
+
+    audio.play().catch((error) => {
+      console.error('Failed to play background music:', error);
+    });
+
+    return () => {
+      audio.removeEventListener('ended', () => {});
+      audio.pause();
+    };
+  }, []);
 
   useEffect(() => {
     if (playSound) {
@@ -80,22 +99,8 @@ function App() {
     return () => clearInterval(timeout);
   }, [board, boardSize, dispatch]);
 
-  useEffect(() => {
-    backgroundMusic.play();
-    return () => {
-      backgroundMusic.pause();
-      backgroundMusic.currentTime = 0;
-      
-    };
-  }, []);
-  console.log(`
-    CCCCCC   AAAAA  N   N  DDDD   Y   Y     CCCCC    RRRRR  U   U  SSSSS  H   H
-    C        A   A  NN  N  D   D   Y Y      C        R   R  U   U  S      H   H
-    C        AAAAA  N N N  D   D    Y       C        RRRRR  U   U  SSSSS  HHHHH
-    C        A   A  N  NN  D   D    Y       C        R  R   U   U      S  H   H
-    CCCCCC   A   A  N   N  DDDD     Y       CCCCC    R   R   UUU   SSSSS  H   H 
-`);
-
+ 
+ 
   return (
     <div className="flex items-center h-screen justify-center flex-col">
       <img
