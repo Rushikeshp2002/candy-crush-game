@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+# React + TypeScript + VITE
 <h2>Live Link => https://candy-crush-game-rushikeshp.netlify.app/</h2>
 <img src="https://github.com/Rushikeshp2002/Images/blob/main/Candy%20Crush.png" style={width:"100%"}>
 
